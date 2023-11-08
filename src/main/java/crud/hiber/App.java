@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 /**
  * Hello world!
  */
@@ -15,8 +17,18 @@ public class App {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
-            Person person = session.get(Person.class, 2);
-            session.delete(person);
+//            List<Person> person = session.createQuery("FROM Person").getResultList();
+//            List<Person> person = session.createQuery("FROM Person where age>30").getResultList();
+//            List<Person> person = session.createQuery("FROM Person where name like 'K%'").getResultList();
+//            List<Person> person = session.createQuery("FROM Person where name like '%t'").getResultList();
+//            session.createQuery("update Person set name='New' where age>30").executeUpdate();
+//            session.createQuery("update Person set name='FM' where name like '%w'").executeUpdate();
+            session.createQuery("delete Person where age>30").executeUpdate();
+
+           /* for (Person per :
+                    person) {
+                System.out.println(per);
+            }*/
 
             session.getTransaction().commit();
         } finally {
