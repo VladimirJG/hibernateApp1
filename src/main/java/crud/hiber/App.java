@@ -15,13 +15,8 @@ public class App {
         Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
-            Person person = new Person("Kurman Aliev", 12);
-            Person person2 = new Person("Zolotoy Adam", 15);
-            Person person3 = new Person("Glava respublici", 33);
-
-            session.save(person);
-            session.save(person2);
-            session.save(person3);
+            Person person = session.get(Person.class, 2);
+            person.setName(person.getName()+" - mudachok");
 
             session.getTransaction().commit();
         } finally {
@@ -30,3 +25,10 @@ public class App {
 
     }
 }
+    /*Person person = new Person("Kurman Aliev", 12);
+    Person person2 = new Person("Zolotoy Adam", 15);
+    Person person3 = new Person("Glava respublici", 33);
+
+            session.save(person);
+                    session.save(person2);
+                    session.save(person3);*/
